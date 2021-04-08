@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 :root {
-  --weekCellSize: 1rem;
-  --weekCellMargins: 0.2rem;
-  --yearRowVertMargin: 0.875rem;
-  --yearRowHorizMargin: 0.125rem;
+  --weekCellSize: 1vw;
+  --weekCellMargins: 0.1vw;
+  --yearRowVertMargin: 0.875vw;
+  --yearRowHorizMargin: 0.125vw;
+  --weekLabelFontSize: 1.23vw;
 }
 
 body {
@@ -19,7 +20,12 @@ body {
 }
 
 h1.title {
-  font-size: 6rem;
+  font-size: min(13vw, 100px);
+  margin: 0 1rem;
+}
+
+h3.subtitle {
+  /* font-size: min(13vw, 100px); */
   margin: 0 1rem;
 }
 
@@ -29,14 +35,14 @@ h1.title {
   justify-content: left;
   align-items: baseline;
   margin: auto;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-top: 2vw;
+  margin-bottom: 4vw;
   height: auto;
-  width: 101rem;
+  width: auto;
   background: rgb(255, 255, 255);
-  border-radius: 15px;
-  border: 2px solid black;
-  padding: 10px;
+  border-radius: min(1vw, 10px);
+  border: min(0.2vw, 2px) solid black;
+  padding: 1vw;
 }
 
 .buttonsDiv {
@@ -58,11 +64,34 @@ h1.title {
 .dateDisp {
   font-family: "Roboto Mono", monospace;
   font-weight: 900;
-  margin-left: 1rem;
-  margin-right: 0.5rem;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
   margin-top: 0;
   margin-bottom: 0;
-  width: 12.8rem;
+  width: min(9vw, 160px);
+  font-size: min(0.7vw, 12px);
+}
+
+.cornerLabel {
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+  font-weight: 900;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: min(9vw, 160px);
+  font-size: min(0.7vw, 18px);
+}
+
+.weeklabel {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8vw;
+  background: white;
+  width: var(--weekCellSize);
+  height: var(--weekCellSize);
+  margin: var(--weekCellMargins);
+  border: min(0.2vw, 2px) solid transparent;
 }
 
 .week {
@@ -70,7 +99,7 @@ h1.title {
   width: var(--weekCellSize);
   height: var(--weekCellSize);
   margin: var(--weekCellMargins);
-  border: 2px solid black;
+  border: min(0.2vw, 2px) solid black;
 }
 
 pre {
@@ -78,18 +107,28 @@ pre {
   border: 2px solid black;
   border-radius: 5px;
   outline: none;
+
+  width: min(95%, 600px);
+  height: min(95%, 600px);
+  overflow: scroll;
 }
 
 code {
-  font-size: 1rem;
+  font-size: min(1.6vw, 20px);
+  width: min(95%, 600px);
+  height: min(95%, 600px);
   outline: none;
+}
+
+.info {
+  color: green;
 }
 
 button {
   background: transparent;
   border: 2px solid black;
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: min(6vw, 20px);
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
   margin: 0px 10px;
 }

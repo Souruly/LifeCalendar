@@ -16,8 +16,6 @@ let parentDiv = document.createElement("div");
 parentDiv.classList.add("parentContainer");
 document.body.appendChild(parentDiv);
 
-// let parsedData = Array(numberOfYears * numberOfWeeks).fill(255);
-
 Date.prototype.addDays = function (days) {
   let date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
@@ -31,15 +29,13 @@ Date.prototype.subtractDays = function (days) {
 };
 
 function parseInputData() {
-  //   console.log("Parsing");
-
   let codeTag = document.getElementById("data");
-  //   console.log(codeTag);
   let codeBlock = codeTag.innerHTML;
-  //   console.log(codeBlock);
   stagesOfLife = JSON.parse(codeBlock);
+
   birthDate = new Date(stagesOfLife[0].startDate);
   birthYear = birthDate.getFullYear();
+
   birthDays = [];
   bdWeeks = [];
   parsedData = [];
@@ -51,10 +47,9 @@ function parseInputData() {
 }
 
 function buildCalendar() {
-  //   console.log(birthDate.toDateString());
-  //   console.log(stagesOfLife);
-
   parseData();
+
+  makeWeekNumberLabels();
 
   for (let year = 0; year < numberOfYears; year++) {
     let yearDiv = document.createElement("div");
@@ -65,7 +60,6 @@ function buildCalendar() {
 
     let dateString = bdWeeks[year][1];
     let dispText = "Year " + numToString(year + 1, 2) + " : " + dateString;
-    // let yS = "Year " + numToString(year + 1, 2) + " : 021997";
     let yp = document.createElement("p");
     yp.classList.add("dateDisp");
     let tn = document.createTextNode(dispText);
@@ -74,7 +68,6 @@ function buildCalendar() {
 
     for (let week = 0; week < numberOfWeeks; week++) {
       let weekNumber = year * numberOfWeeks + week;
-      //   let weekColor = "#07b8b4";
       let weekColor = parsedData[weekNumber];
 
       let wCell = document.createElement("div");
@@ -87,7 +80,30 @@ function buildCalendar() {
   }
 
   calendarBuilt = 1;
-  //   styleWeekCells();
+}
+
+function makeWeekNumberLabels() {
+  let weekLabels = document.createElement("div");
+  weekLabels.classList.add("year");
+  let yClassString = "year_" + String(00);
+  weekLabels.classList.add(yClassString);
+  parentDiv.appendChild(weekLabels);
+
+  let dispText = "Years↓\\Weeks→ ";
+  let yp = document.createElement("p");
+  yp.classList.add("cornerLabel");
+  let tn = document.createTextNode(dispText);
+  yp.appendChild(tn);
+  weekLabels.appendChild(yp);
+
+  for (let week = 0; week < numberOfWeeks; week++) {
+    let weekNumber = numToString(week+1,2);
+    let wp = document.createElement("p");
+    wp.classList.add("weekLabel");
+    let wtn = document.createTextNode(weekNumber);
+    wp.appendChild(wtn)
+    weekLabels.appendChild(wp);
+  }
 }
 
 function numToString(num, stringSize) {
@@ -137,7 +153,6 @@ function getStartDates() {
 }
 
 function getWeekStart(someDateInWeek) {
-  // console.log(ct);
   let dayOfWeek = someDateInWeek.getDay();
   dayOfWeek -= 1;
   if (dayOfWeek < 0) {
@@ -168,15 +183,11 @@ function parseData() {
     let eCol = en / 7;
     let ec = eRow * 52 + eCol;
 
-    // console.log(sc, ec);
-
-    // let numCells = ec-sc+1;
     let stageColor = stage.color;
 
     stageColors.push(stageColor);
 
     for (let i = sc; i < ec; i++) {
-      //   parsedData[i] = stageIndex;
       parsedData[i] = stageColor;
     }
   }
@@ -194,7 +205,6 @@ function printCal() {
     return;
   }
   hideUI();
-//   zoomOut();
   showPrintWindow();
 }
 
@@ -210,17 +220,29 @@ function hideUI() {
 }
 
 function zoomOut() {
-  document.body.style.zoom = "80%";
+  let winWidth = window.innerWidth;
+  let divWidth = document.body.scrollWidth;
+
+  let zoomRatio = winWidth / divWidth;
+
+  console.log(winWidth, divWidth, zoomRatio);
+
+  if (zoomRatio < 1) {
+    let zoom = Math.round(zoomRatio * 100);
+    let z = String(zoom - 10) + "%";
+    console.log("Zoom :", z);
+    document.body.style.zoom = z;
+  }
 }
 
 function showPrintWindow() {
-  let alertMessage =
-    "These print settings seem to work for me:" +
-    "\n0. Save as PDF" +
-    "\n1. Layout: Portrait" +
-    "\n2. Paper Size A4" +
-    "\n3. Scale(Zoom): Custom, 39" +
-    "\n4. Include background graphics";
-  alert(alertMessage);
-  window.print();
+  var container = document.body;
+  html2canvas(container).then(function (canvas) {
+    var link = document.createElement("a");
+    document.body.appendChild(link);
+    link.download = "html_image.png";
+    link.href = canvas.toDataURL("image/png");
+    link.target = "_blank";
+    link.click();
+  });
 }
