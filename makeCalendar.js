@@ -219,7 +219,8 @@ function showPrintWindow() {
     "\n0. Save as PDF" +
     "\n1. Layout: Portrait" +
     "\n2. Paper Size A4" +
-    "\n3. Scale(Zoom): Custom, 39";
+    "\n3. Scale(Zoom): Custom, 39" +
+    "\n4. Include background graphics";
   alert(alertMessage);
   window.print();
 }
