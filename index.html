@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+  </head>
+  <body>
+    <h1 class="title">Life Calendar</h1>
+    <pre id="preTag">
+      <code class="jsonData" contenteditable="true" id="data" spellcheck="false">[
+        {
+          "title": "First few years",
+          "startDate": "Oct 02 1997",
+          "endDate": "Dec 30 2002",
+          "color": "rgb(255, 123, 157)"
+        },
+        {
+          "title": "School",
+          "startDate": "Dec 30 2002",
+          "endDate": "Jun 15 2013",
+          "color": "rgb(84 249 104)"
+        },
+        {
+          "title": "Jr. College",
+          "startDate": "Jun 15 2013",
+          "endDate": "Jul 27 2015",
+          "color": "rgb(74, 88, 255)"
+        },
+        {
+          "title": "Engineering",
+          "startDate": "Jul 27 2015",
+          "endDate": "May 27 2019",
+          "color": "#99004C"
+        },
+        {
+          "title": "Post Engineering Holidays",
+          "startDate": "May 27 2019",
+          "endDate": "Jul 31 2019",
+          "color": "#99CCFF"
+        },
+        {
+          "title": "Barclays",
+          "startDate": "Jul 31 2019",
+          "endDate": "Apr 03 2020",
+          "color": "#FFFF66"
+        },
+        {
+          "title": "Covid + TP + Admission at RWTH",
+          "startDate": "Apr 03 2020",
+          "endDate": "Jan 08 2021",
+          "color": "#808000"
+        },
+        {
+          "title": "Germany",
+          "startDate": "Jan 08 2021",
+          "endDate": "Apr 08 2021",
+          "color": "rgb(160, 113, 220)"
+        }
+]
+      </code>
+    </pre>
+    <div class="buttonsDiv" id="buttonsDivTag">
+      <button id="buildCalButton" onclick="parseInputData()">
+        Get Calendar
+      </button>
+      <button id="printCalButton" onclick="printCal()">Print Calendar</button>
+    </div>
+    <script language="javascript" type="text/javascript" src="makeCalendar.js"></script>
+  </body>
+</html>

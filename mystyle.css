@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+:root {
+  --weekCellSize: 1rem;
+  --weekCellMargins: 0.2rem;
+  --yearRowVertMargin: 0.875rem;
+  --yearRowHorizMargin: 0.125rem;
+}
+
+body {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(to left, #0575e6, #00f260) no-repeat center center fixed; */
+  background: rgb(255, 255, 255);
+  font-family: "Roboto Slab", serif;
+}
+
+h1.title {
+  font-size: 6rem;
+  margin: 0 1rem;
+}
+
+.parentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: baseline;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  height: auto;
+  width: 101rem;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.year {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.dateDisp {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 900;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 12.8rem;
+}
+
+.week {
+  background: white;
+  width: var(--weekCellSize);
+  height: var(--weekCellSize);
+  margin: var(--weekCellMargins);
+  border: 2px solid black;
+}
+
+pre {
+  background: rgb(243, 243, 243);
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+}
+
+code {
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 0px 10px;
+}
