@@ -220,8 +220,8 @@ function printCal() {
     return;
   }
   hideUI();
-  setTimeout(printToPNG(), 3000);
-  // printToPNG();
+  // setTimeout(printToPNG(), 3000);
+  printToPNG();
 }
 
 function hideUI() {
