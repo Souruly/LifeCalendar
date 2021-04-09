@@ -1,3 +1,5 @@
+hljs.highlightAll();
+
 let button = document.getElementById("buildCalButton");
 let stagesOfLife;
 let birthDate = new Date("Jan 01 2000");
@@ -31,7 +33,20 @@ Date.prototype.subtractDays = function (days) {
 function parseInputData() {
   let codeTag = document.getElementById("data");
   let codeBlock = codeTag.innerHTML;
-  stagesOfLife = JSON.parse(codeBlock);
+  // console.log(codeBlock);
+
+  let re1 = new RegExp(/<span.*?">/g);
+  let pass1 = codeBlock.replaceAll(re1,"");
+  // console.log("\n Pass1");
+  // console.log(pass1);
+
+  let re2 = new RegExp(/<\/span>/g);
+  let pass2 = pass1.replaceAll(re2,"");
+  // console.log("\n Pass 2");
+  // console.log(pass2);
+
+  stagesOfLife = JSON.parse(pass2);
+  console.log(stagesOfLife)
 
   birthDate = new Date(stagesOfLife[0].startDate);
   birthYear = birthDate.getFullYear();
@@ -205,18 +220,16 @@ function printCal() {
     return;
   }
   hideUI();
-  showPrintWindow();
+  setTimeout(printToPNG(), 3000);
+  // printToPNG();
 }
 
 function hideUI() {
-  let preTag = document.getElementById("preTag");
-  preTag.hidden = true;
+  let codeDiv = document.getElementsByClassName("codeHolder")[0];
+  codeDiv.remove();
+
   let buttonsDivTag = document.getElementById("buttonsDivTag");
-  buttonsDivTag.hidden = true;
-  let buildCalButton = document.getElementById("buildCalButton");
-  buildCalButton.hidden = true;
-  let printCalButton = document.getElementById("printCalButton");
-  printCalButton.hidden = true;
+  buttonsDivTag.remove();
 }
 
 function zoomOut() {
@@ -235,7 +248,7 @@ function zoomOut() {
   }
 }
 
-function showPrintWindow() {
+function printToPNG() {
   var container = document.body;
   html2canvas(container).then(function (canvas) {
     var link = document.createElement("a");
